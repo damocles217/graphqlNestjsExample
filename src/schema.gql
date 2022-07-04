@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Error {
+  message: String!
+  path: String!
+}
+
+type GetLoged {
+  admin: Boolean
+  log: Boolean!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createPost(createPost: PostCreateInput!): Post!
+  createUser(userInput: NewUserInput!): Response!
+  loginUser(loginInput: LoginUserInput!): Response!
+  updateUser(updateUser: NewUserInput!): Response!
+}
+
+input NewUserInput {
+  email: String!
+  lastname: String!
+  name: String!
+  password: String!
+}
+
+type Post {
+  _id: ID!
+  content: String!
+  createdAt: DateTime
+  description: String!
+  facebook: String
+  owner: String!
+  title: String!
+  updatedAt: DateTime
+  updaters: [Updaters!]!
+}
+
+input PostCreateInput {
+  content: String!
+  description: String!
+  facebook: String
+  password: String!
+  title: String!
+}
+
+type Query {
+  getPosts(list: Float!): [Post!]!
+  getUser(email: String!): Response!
+  getUsers(limit: Int!): [User!]!
+  isLoged: GetLoged!
+  logOut: Boolean!
+}
+
+type Response {
+  errors: [Error!]
+  sucess: Boolean!
+  user: User
+}
+
+type Updaters {
+  dateUpdate: DateTime!
+  updater: String!
+}
+
+type User {
+  _id: ID!
+  admin: Boolean!
+  code_auth: String!
+  createdAt: DateTime
+  email: String!
+  lastname: String!
+  name: String!
+  password: String!
+  updatedAt: DateTime
+  userId: String!
+}
